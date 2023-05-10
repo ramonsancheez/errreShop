@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models;
+use Illuminate\Database\Eloquent\Relations\HasOneThrough;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -33,6 +34,16 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    public function transactionPoint(): HasOneThrough
+    {
+        return $this->hasOneThrough(Trsansaction::class, Point::class);
+    }
+
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
+
     /**
      * The attributes that should be cast.
      *
@@ -42,3 +53,4 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 }
+
