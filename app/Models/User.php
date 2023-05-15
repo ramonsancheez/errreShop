@@ -36,7 +36,7 @@ class User extends Authenticatable
 
     public function transactionPoint(): HasOneThrough
     {
-        return $this->hasOneThrough(Trsansaction::class, Point::class);
+        return $this->hasOneThrough(Transaction::class, Point::class);
     }
 
     public function products()

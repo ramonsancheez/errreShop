@@ -11,10 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('products', function (Blueprint $table) {
+        Schema::create('products', function (Blueprint $table): void {
             $table->id();
+            $table->foreignId('category_id')->constrained();
+            $table->string('name');
+            $table->integer('price');
+            $table->string('description');
+            $table->string('state');
             $table->timestamps();
         });
+        
     }
 
     /**

@@ -10,13 +10,6 @@ class Transaction extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'product_id',
-        'user_id',
-        'quantity',
-        'total',
-    ];
-
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
@@ -27,8 +20,4 @@ class Transaction extends Model
         return $this->belongsTo(Product::class);
     }
 
-    public function point()
-    {
-        return $this->hasMany(Point::class);
-    }
 }
