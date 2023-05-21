@@ -1,7 +1,1 @@
-import './bootstrap';
-
-import Alpine from 'alpinejs';
-
-window.Alpine = Alpine;
-
-Alpine.start();
+console.log('Hello World from Webpack Encore! Edit me in resources/js/app.js')
