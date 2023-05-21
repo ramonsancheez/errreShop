@@ -10,10 +10,15 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $products = Product::select('name', 'price', 'description', 'state')->get();
+        $products = Product::select('id', 'name', 'price', 'description', 'state')->get();
         return view('products.index', compact('products'));
     }
 
+    public function show(Product $product)
+    {
+        return view('products.show', ['product' => $product]);
+    }
+    
     public function create()
     {
         $categories = Category::select('id', 'name')->get();
@@ -27,6 +32,7 @@ class ProductController extends Controller
             'price' => 'required',
             'state' => 'required',
             'description' => 'required',
+            'category_id' => 'required',
         ]);
 
         $product = new Product();
@@ -34,36 +40,45 @@ class ProductController extends Controller
         $product->price = $request->price;
         $product->state = $request->state;
         $product->description = $request->description;
+        $product->category_id = $request->category_id;
         $product->save();
 
-        return redirect()->route('products.index');
+        return to_route('product.index')->with('status', 'Product created successfully');
+
     }
 
-    public function update(Request $request, $id)
+    public function edit(Product $product)
+    {
+        $categories = Category::select('id', 'name')->get();
+        return view('products.edit', ['product' => $product], compact('categories'));
+    }
+
+    public function update(Request $request, Product $product)
     {
         $request->validate([
             'name' => 'required',
             'price' => 'required',
             'state' => 'required',
             'description' => 'required',
+            'category_id' => 'required',
         ]);
 
-        $product = Product::find($id);
         $product->name = $request->name;
         $product->price = $request->price;
         $product->state = $request->state;
         $product->description = $request->description;
+        $product->category_id = $request->category_id;
         $product->save();
 
-        return redirect()->route('products.index');
+        return to_route('product.index')->with('status', 'Product updated successfully');
+
+
     }
 
-    public function destroy($id)
+    public function destroy(Product $product)
     {
-        $product = Product::find($id);
         $product->delete();
-
-        return redirect()->route('products.index');
+        return redirect()->route('product.index')->with('status', 'Product deleted successfully');
     }
 }
 
