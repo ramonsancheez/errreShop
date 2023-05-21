@@ -1,0 +1,141 @@
+$white: #fff;
+$black: #000;
+$header-height: 100px;
+$distance: 20px;
+$fw-bold: 600;
+$fw-regular: 400;
+
+body {
+    background-color: $white;
+}
+
+ul, a{
+    list-style: none;
+    text-decoration: none;
+    color: $black;
+}
+
+
+.main-header{
+    padding: $distance;
+    display: flex;
+    height: $header-height;  
+    border: 1px solid $black;
+    &__title{
+        margin:auto 0;
+    }
+    nav{
+        display: flex;
+        align-items: center;
+        margin-left: auto;
+    }
+    &__nav{
+        list-style: none;
+        margin: auto 0;
+        display: flex;
+        gap: 20px;
+        &__link{
+            text-decoration:none;
+        }
+    }
+}
+
+.main-content {
+    border: 1px solid $black;
+    margin: 100px $distance 0;
+    
+    .product{
+        &:hover{
+            transform: translateY(-2px);
+        }
+        &__title{
+            text-align: center;
+        }
+        &__list{
+            display: flex;
+            flex-wrap: wrap-reverse;
+            gap: $distance;
+            margin-top: 30px;
+            justify-content: center;
+        }
+        
+        &__name{
+            text-transform: capitalize;
+            font-weight: $fw-bold;
+            margin-top: 5px;
+        }
+        
+        &__price{
+            margin-top: 5px;
+        }
+        
+        &__image{
+            border-radius: 10px;
+        }
+    }
+}
+
+.main-footer{
+    border: 1px solid $black;
+    text-align:center;
+    margin-top:100px;
+}
+
+.product-container{
+    display: grid;
+    grid-template-columns: repeat(2,400px);
+    gap: 75px;
+    justify-content: center;
+    margin-top:100px;
+}
+
+.product__info{
+    
+    &__title{
+        font-weight: $fw-regular;
+        text-transform: capitalize;
+        font-size: 28px;
+        margin-top: $distance;
+    }
+    
+    &__price{
+        font-weight: $fw-bold;
+        font-size: 32px;
+        margin-top: $distance;
+    }
+    &__dif{
+        display: flex;
+        gap: $distance;
+        margin-top: $distance;
+    }
+    &__state, &__category{
+        border: 1px solid aqua;
+        padding: 10px;
+        border-radius: 15px;
+        background-color: aqua;
+        color: $white;
+    }
+    &__description{
+        margin-top: 40px;
+    }
+    &__toDo{
+        display:flex;
+        gap: $distance;
+        justify-content: space-between;
+        margin-top: 40px;
+    }
+    &__edit, &__delete{
+        cursor: pointer;
+        &:hover{
+            opacity: 0.7;
+        }
+    }
+    &__back{
+        width:875px;
+        display:flex;
+        margin: $distance auto 0;
+        &:hover{
+            opacity: 0.7;
+        }
+    }
+}

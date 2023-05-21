@@ -1,0 +1,123 @@
+body {
+    background-color: #fff;
+  }
+  
+  ul, a {
+    list-style: none;
+    text-decoration: none;
+    color: #000;
+  }
+  
+  .main-header {
+    padding: 20px;
+    display: flex;
+    height: 100px;
+    border: 1px solid #000;
+  }
+  .main-header__title {
+    margin: auto 0;
+  }
+  .main-header nav {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+  }
+  .main-header__nav {
+    list-style: none;
+    margin: auto 0;
+    display: flex;
+    gap: 20px;
+  }
+  .main-header__nav__link {
+    text-decoration: none;
+  }
+  
+  .main-content {
+    border: 1px solid #000;
+    margin: 100px 20px 0;
+  }
+  .main-content .product:hover {
+    transform: translateY(-2px);
+  }
+  .main-content .product__title {
+    text-align: center;
+  }
+  .main-content .product__list {
+    display: flex;
+    flex-wrap: wrap-reverse;
+    gap: 20px;
+    margin-top: 30px;
+    justify-content: center;
+  }
+  .main-content .product__name {
+    text-transform: capitalize;
+    font-weight: 600;
+    margin-top: 5px;
+  }
+  .main-content .product__price {
+    margin-top: 5px;
+  }
+  .main-content .product__image {
+    border-radius: 10px;
+  }
+  
+  .main-footer {
+    border: 1px solid #000;
+    text-align: center;
+    margin-top: 100px;
+  }
+  
+  .product-container {
+    display: grid;
+    grid-template-columns: repeat(2, 400px);
+    gap: 75px;
+    justify-content: center;
+    margin-top: 100px;
+  }
+  
+  .product__info__title {
+    font-weight: 400;
+    text-transform: capitalize;
+    font-size: 28px;
+    margin-top: 20px;
+  }
+  .product__info__price {
+    font-weight: 600;
+    font-size: 32px;
+    margin-top: 20px;
+  }
+  .product__info__dif {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+  }
+  .product__info__state, .product__info__category {
+    border: 1px solid aqua;
+    padding: 10px;
+    border-radius: 15px;
+    background-color: aqua;
+    color: #fff;
+  }
+  .product__info__description {
+    margin-top: 40px;
+  }
+  .product__info__toDo {
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+    margin-top: 40px;
+  }
+  .product__info__edit, .product__info__delete {
+    cursor: pointer;
+  }
+  .product__info__edit:hover, .product__info__delete:hover {
+    opacity: 0.7;
+  }
+  .product__info__back {
+    width: 875px;
+    display: flex;
+    margin: 20px auto 0;
+  }
+  .product__info__back:hover {
+    opacity: 0.7;
+  }

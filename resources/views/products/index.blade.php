@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>Lista de Productos</title>
-    <link href="/public/css/app.css" rel="stylesheet">
+    <link href="/css/app.css" rel="stylesheet">
 </head>
 
 @if (session('status'))
@@ -12,36 +12,34 @@
 @endif
 
 <body>
-    <header>
-        <h1>eRRRe</h1>
+    <header class="main-header">
+        <h1 class="main-header__title">eRRRe</h1>
         <nav>
-            <ul>
+            <ul class="main-header__nav">
                 <li>
-                    <a href="{{ route('product.index') }}">Productos</a>
+                    <a class="main-header__nav__link" href="{{ route('product.index') }}">Productos</a>
                 </li>
                 <li>
-                    <a href="{{ route('product.create') }}">Subir Producto</a>
+                    <a class="main-header__nav__link" href="{{ route('product.create') }}">Subir Producto</a>
                 </li>
             </ul>
         </nav>
     </header>
-    <main>
-        <h2>Lista de Productos</h2>
-        <ul>
-            @foreach($products as $product)
+    <main class="main-content">
+        <h2 class="product__title">Lista de Productos</h2>
+        <ul class="product__list">
+            @foreach($products->reverse() as $product)
                 <li class="product">
                     <a href="/products/{{$product->id}}">
-                        <img src="https://placehold.co/400" title="{{$product->name}}" alt="{{ $product->name }}">
-                        <p>{{ $product }}</p>
+                        <img class="product__image" src="https://placehold.co/170x225/" title="{{$product->name}}" alt="{{ $product->name }}">
+                        <div class="product__name">{{ $product->name }}</div>
+                        <div class="product__price">{{ $product->price }}€</div>
                     </a>
-                    <div class="product__button">
-                        <a href=" {{ route('product.edit', $product)}}">Ver</a>
-                    </div>
                 </li>
             @endforeach
         </ul>
     </main>
-    <footer>
+    <footer class="main-footer">
         <p>Desarrollado por <a href="#">Ramón Sánchez</a></p>
     </footer>
 </body>
