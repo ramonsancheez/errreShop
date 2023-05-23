@@ -11,19 +11,22 @@
     </div>
 @endif
 
-<body>
+<body id="home" class="home">
     <header class="main-header">
         <h1 class="main-header__title">eRRRe</h1>
         <nav>
             <ul class="main-header__nav">
-                <li>
+                <li class="main-header__nav__item">
                     <a class="main-header__nav__link" href="{{ route('product.index') }}">Productos</a>
                 </li>
-                <li>
+                <li class="main-header__nav__item">
                     <a class="main-header__nav__link" href="{{ route('product.create') }}">Subir Producto</a>
                 </li>
             </ul>
         </nav>
+        <div class="filter">
+
+        </div>
     </header>
     <main class="main-content">
         <h2 class="product__title">Lista de Productos</h2>

@@ -4,6 +4,7 @@ $header-height: 100px;
 $distance: 20px;
 $fw-bold: 600;
 $fw-regular: 400;
+$zindex-mh: 100000000;
 
 body {
     background-color: $white;
@@ -17,6 +18,11 @@ ul, a{
 
 
 .main-header{
+    transform: translateY(10px);
+    position: sticky;
+    top: 0;
+    z-index: $zindex-mh;
+    background-color: $white;
     padding: $distance;
     display: flex;
     height: $header-height;  
@@ -34,6 +40,11 @@ ul, a{
         margin: auto 0;
         display: flex;
         gap: 20px;
+        &__item{
+            &.active{
+                text-decoration: underline;
+            }
+        }
         &__link{
             text-decoration:none;
         }
@@ -139,3 +150,63 @@ ul, a{
         }
     }
 }
+
+.form{
+    display: grid;
+    margin: 100px auto 0;
+    max-width: 670px;
+    border: 1px solid $black;
+    padding: 40px $distance;
+
+    &__title{
+        text-align: center;
+    }
+
+    &__item{
+        display: flex;
+        flex-direction: column;
+        margin-top: $distance;
+    }
+    &__label{
+        font-weight: $fw-bold;
+        margin-bottom: 5px;
+    }
+    &__select{
+        display: flex;
+        gap: $distance;
+        justify-content: space-between;
+    }
+
+    #update-form &{
+        margin: 30px auto 0;
+    }
+}
+
+select{
+    border: 1px solid #000;
+    border-radius: 10px;
+    padding: 10px;
+    max-width: 100%;
+}
+
+input, textarea {
+    border: 1px solid #000;
+    border-radius: 10px;
+    padding: 10px;
+    max-width: 96.5%;
+}
+
+.submit{
+    display: flex;
+    justify-content: center;
+    margin: 30px auto;
+}
+
+footer{
+    #create-form &, #update-form &{
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+    }
+}
+  

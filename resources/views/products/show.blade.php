@@ -5,7 +5,7 @@
     <link href="/css/app.css" rel="stylesheet">
 </head>
 
-<body>
+<body id="product" class="product">
     <header class="main-header">
         <h1 class="main-header__title">eRRRe</h1>
         <nav>
@@ -27,7 +27,7 @@
                 <div class="product__info__title">{{$product->name}}</div>
                 <div class="product__info__dif">
                     <div class="product__info__category">{{$product->category->name}}</div>
-                    <div class="product__info__state">{{$product->state}}</div>
+                    <div class="product__info__state">{{$product->state->name}}</div>
                 </div>    
                 <hr>
                 <div class="product__info__description">{{$product->description}}</div>
