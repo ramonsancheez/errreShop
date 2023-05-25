@@ -32,14 +32,18 @@
                 <hr>
                 <div class="product__info__description">{{$product->description}}</div>
                 <div class="product__info__toDo">
-                    <div class="product__info__edit"><a href="{{route('product.edit', $product)}}">Editar producto</a></div>
-                    <div class="product__info__delete">
-                        <form action="{{route('product.destroy', $product)}}" method="POST">
-                            @csrf
-                            @method('delete')
-                            <button type="submit">Eliminar</button>
-                        </form>
-                    </div>
+                    @if ($product->user_id == Auth::user()->id)
+                        <div class="product__info__edit"><a href="{{route('product.edit', $product)}}">Editar producto</a></div>
+                        <div class="product__info__delete">
+                            <form action="{{route('product.destroy', $product)}}" method="POST">
+                                @csrf
+                                @method('delete')
+                                <button type="submit">Eliminar</button>
+                            </form>
+                        </div>
+                    @else
+                        <div class="product__info__buy"><a href="#0">Comprar</a></div>
+                    @endif
                 </div>
             </div>
         </div>

@@ -2,15 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\State;
 
 class ProductController extends Controller
 {
     public function index()
     {
-        $products = Product::select('id', 'name', 'price', 'description', 'state')->get();
+        $products = Product::select('id', 'name', 'price')->get();
         return view('products.index', compact('products'));
     }
 
@@ -22,7 +24,8 @@ class ProductController extends Controller
     public function create()
     {
         $categories = Category::select('id', 'name')->get();
-        return view('products.create', compact('categories'));
+        $states = State::select('id', 'name')->get();
+        return view('products.create', compact('categories', 'states'));
     }
 
     public function store(Request $request)
@@ -30,16 +33,19 @@ class ProductController extends Controller
         $request->validate([
             'name' => 'required',
             'price' => 'required',
-            'state' => 'required',
             'description' => 'required',
             'category_id' => 'required',
+            'state_id' => 'required',
         ]);
 
         $product = new Product();
+        $user = Auth::user();
+
         $product->name = $request->name;
         $product->price = $request->price;
-        $product->state = $request->state;
+        $product->state_id = $request->state_id;
         $product->description = $request->description;
+        $product->user_id = $user->id;
         $product->category_id = $request->category_id;
         $product->save();
 
@@ -50,7 +56,8 @@ class ProductController extends Controller
     public function edit(Product $product)
     {
         $categories = Category::select('id', 'name')->get();
-        return view('products.edit', ['product' => $product], compact('categories'));
+        $states = State::select('id', 'name')->get();
+        return view('products.edit', ['product' => $product], compact('categories', 'states'));
     }
 
     public function update(Request $request, Product $product)
@@ -58,14 +65,14 @@ class ProductController extends Controller
         $request->validate([
             'name' => 'required',
             'price' => 'required',
-            'state' => 'required',
             'description' => 'required',
             'category_id' => 'required',
+            'state_id' => 'required',
         ]);
 
         $product->name = $request->name;
         $product->price = $request->price;
-        $product->state = $request->state;
+        $product->state_id = $request->state_id;
         $product->description = $request->description;
         $product->category_id = $request->category_id;
         $product->save();
