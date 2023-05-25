@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('name');
             $table->float('price');
             $table->string('description');
-            $table->unsignedBigInteger('user_id')->default(-1);
+            $table->unsignedBigInteger('user_id')->default(0);
             $table->foreignId('state_id')->constrained();
             $table->timestamps();
         });
