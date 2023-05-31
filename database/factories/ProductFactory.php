@@ -24,6 +24,7 @@ class ProductFactory extends Factory
             'category_id' => function () { return Category::inRandomOrder()->first()->id;},
             'description' => $this->faker->paragraph(2),
             'state_id' => function () { return State::inRandomOrder()->first()->id;},
+            'user_id' => 0,
         ];
     }
 }

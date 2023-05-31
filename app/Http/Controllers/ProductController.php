@@ -12,8 +12,10 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $products = Product::select('id', 'name', 'price')->get();
-        return view('products.index', compact('products'));
+        $products = Product::select('id', 'name', 'price', 'description', 'category_id', 'state_id')
+        ->where('buyer_id', 0)
+        ->get();
+        return view('products.index', ['products' => $products]);
     }
 
     public function show(Product $product)
@@ -78,14 +80,29 @@ class ProductController extends Controller
         $product->save();
 
         return to_route('product.index')->with('status', 'Product updated successfully');
-
-
     }
 
     public function destroy(Product $product)
     {
         $product->delete();
         return redirect()->route('product.index')->with('status', 'Product deleted successfully');
+    }    
+
+    public function myProducts()
+    {
+        $user = Auth::user();
+        $products = Product::select('id', 'name', 'price', 'description', 'category_id', 'state_id')->where('user_id', $user->id)->get();
+        $purchasedProducts = Product::select('id', 'name', 'price', 'description', 'category_id', 'state_id')->where('buyer_id', $user->id)->get();
+        $soldProducts = Product::select('id', 'name', 'price', 'description', 'category_id', 'state_id')->where('user_id', $user->id)->where('buyer_id', '!=', 0)->get();
+        return view('products.my-products', ['products' => $products, 'purchasedProducts' => $purchasedProducts, 'soldProducts' => $soldProducts]);
+    }
+
+    public function purchase(Product $product)
+    {
+        $user = Auth::user();
+        $product->buyer_id = $user->id;
+        $product->save();
+        return redirect()->route('product.index')->with('status', 'Product purchased successfully');
     }
 }
 
