@@ -3,25 +3,39 @@
     <head>
         <title>Lista de Productos</title>
         <link href="/css/app.css" rel="stylesheet">
+        <script src="/js/app.js" defer></script>
     </head>
     <body id="create-form" class="create-form">
         <header class="main-header">
-            <h1 class="main-header__title">eRRRe</h1>
+            <a href="/products">
+                <h1 class="main-header__title">eRRRe</h1>
+                <h3 class="main-header__subtitle">Recycle, reduce, reuse</h3>
+            </a>
             <nav>
                 <ul class="main-header__nav">
                     <li class="main-header__nav__item">
-                        <a class="main-header__nav__link" href="{{ route('product.index') }}">Productos</a>
+                        <a id="link1" class="main-header__nav__link" href="{{ route('product.index') }}">Productos</a>
                     </li>
                     <li class="main-header__nav__item">
-                        <a class="main-header__nav__link" href="{{ route('product.create') }}">Subir Producto</a>
+                        <a id="link2" class="main-header__nav__link" href="{{ route('product.create') }}">Subir Producto</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('logout') }}"
+                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            Log Out
+                        </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
                     </li>
                 </ul>
             </nav>
+            
         </header>
         <main>
             <div class="form">
                 <h2 class="form__title">Sube tu producto</h2>
-                <form action="{{ route('product.store') }}" method="POST">
+                <form action="{{ route('product.store') }}" id="form" method="POST" onsubmit="return validateForm()">
                 @csrf
                     <div class="form__item">
                         <label for="name">Nombre:</label>

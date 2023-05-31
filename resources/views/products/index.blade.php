@@ -4,9 +4,7 @@
     <title>Lista de Productos</title>
     <link href="/css/app.css" rel="stylesheet">
     <script src="/js/app.js" defer></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono&display=swap" rel="stylesheet">
 </head>
 
 <body onscroll="addScroll()" id="home" class="home">
@@ -16,8 +14,10 @@
         </div>
     @endif
     <header class="main-header">
-        <h1 class="main-header__title">eRRRe</h1>
-        <h3 class="main-header__subtitle">Recycle, reduce, reuse</h3>
+        <a href="/products">
+            <h1 class="main-header__title">eRRRe</h1>
+            <h3 class="main-header__subtitle">Recycle, reduce, reuse</h3>
+        </a>
         <nav>
             <ul class="main-header__nav">
                 <li class="main-header__nav__item">
@@ -25,6 +25,18 @@
                 </li>
                 <li class="main-header__nav__item">
                     <a class="main-header__nav__link" href="{{ route('product.create') }}">Subir Producto</a>
+                </li>
+                <li class="main-header__nav__item">
+                    <a class="main-header__nav__link" href="{{ route('product.my-products') }}">{{ auth()->user()->name }}</a>
+                </li>
+                <li>
+                    <a href="{{ route('logout') }}"
+                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                        Log Out
+                    </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
                 </li>
             </ul>
         </nav>
