@@ -64,8 +64,18 @@ const search = () => {
     }
 }
 
+const checkboxChecked = () => {
+    var checkbox = document.getElementById("myCheckbox");
 
-function shorterDescrp() {
+      if (checkbox.checked) {
+        console.log("El checkbox está marcado");
+      } else {
+        console.log("El checkbox no está marcado");
+      }
+}
+
+
+const shorterDescrp = () => {
     const MAX_LENGTH = 20; 
     const descripciones = document.getElementsByClassName('product__description');
 
