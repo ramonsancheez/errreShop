@@ -14,9 +14,10 @@ return new class extends Migration
         Schema::create('transactions', function (Blueprint $table): void {
             $table->id();
             $table->foreignId('user_id')->constrained();
+            $table->foreignId('buyer_id')->constrained('users');
             $table->integer('points');
             $table->foreignId('product_id')->constrained();
-            $table->float('total');
+            $table->float('price');
             $table->timestamps();
         });
     }
