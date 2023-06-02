@@ -1,39 +1,5 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Producto {{$product->name}}</title>
-    <link href="/css/app.css" rel="stylesheet">
-    <script src="/js/app.js" defer></script>
-</head>
-
-<body id="product" class="product">
-    <header class="main-header">
-        <a href="/products">
-            <h1 class="main-header__title">eRRRe</h1>
-            <h3 class="main-header__subtitle">Recycle, reduce, reuse</h3>
-        </a>
-        <nav>
-            <ul class="main-header__nav">
-                <li class="main-header__nav__item">
-                    <a id="link1" class="main-header__nav__link" href="{{ route('product.index') }}">Productos</a>
-                </li>
-                <li class="main-header__nav__item">
-                    <a id="link2" class="main-header__nav__link" href="{{ route('product.create') }}">Subir Producto</a>
-                </li>
-                <li>
-                    <a href="{{ route('logout') }}"
-                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                        Log Out
-                    </a>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                        @csrf
-                    </form>
-                </li>
-            </ul>
-        </nav>
-        
-    </header>
-    <main class="main-content">
+@extends('layouts/layout')
+    @section('main-content') 
         <div class="product-container">
             <img class="product__image" src="https://placehold.co/400/" title="{{$product->name}}" alt="{{ $product->name }}">
             <div class="product__info">
@@ -90,11 +56,19 @@
                 
             </div>
         </div>
+        <div class="product__info__link">
+            <a class="product__info__back"href="{{route('product.index')}}">Volver</a>
+        </div>
         
-        <a class="product__info__back"href="{{route('product.index')}}">Volver</a>
-    </main>
-
-    <footer class="main-footer">
-        <p>Desarrollado por <a href="#">Ramón Sánchez</a></p>
-    </footer>
-</body>
+        <div class="share-socialmedia">
+            Comparte tu producto en: 
+            <a href="https://twitter.com/intent/tweet?url={{ urlencode($productUrl) }}&text={{ urlencode($product->name . ' - Precio: ' . $product->price . '€ - Descripción: ' . $product->description) }}&hashtags=errreShop" target="_blank">
+                <img src="{{ asset('img/socialmedia/twitter.svg') }}" alt="Compartir en Twitter">
+            </a>
+            <a href="https://api.whatsapp.com/send?text={{ urlencode($product->name . ' - Precio: ' . $product->price . '€ - Descripción: ' . $product->description) }} {{ urlencode($productUrl) }}" target="_blank">
+                <img src="{{ asset('img/socialmedia/whatsapp.svg') }}" alt="Compartir en Whatsapp">
+            <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode($productUrl) }}&quote={{ urlencode($product->name) }}" target="_blank">
+                <img src="{{ asset('img/socialmedia/facebook.svg') }}" />
+            </a>    
+        </div>
+    @endsection  

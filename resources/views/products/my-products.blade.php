@@ -1,46 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Lista de Productos</title>
-    <link href="/css/app.css" rel="stylesheet">
-    <script src="/js/app.js" defer></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Mono&display=swap" rel="stylesheet">
-</head>
-<body>
-    <header class="main-header">
-        <a href="/products">
-            <h1 class="main-header__title">eRRRe</h1>
-            <h3 class="main-header__subtitle">Recycle, reduce, reuse</h3>
-        </a>
-        <nav>
-            <ul class="main-header__nav">
-                <li class="main-header__nav__item">
-                    <a id="link1" class="main-header__nav__link" href="{{ route('product.index') }}">Productos</a>
-                </li>
-                <li class="main-header__nav__item">
-                    <a id="link2" class="main-header__nav__link" href="{{ route('product.create') }}">Subir Producto</a>
-                </li>
-                <li class="main-header__nav__item">
-                    <a id="link1" class="main-header__nav__link" href="{{ route('product.my-products') }}">Mis productos</a>
-                </li>
-                <li>
-                    <a href="{{ route('logout') }}"
-                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                        Log Out
-                    </a>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                        @csrf
-                    </form>
-                </li>
-            </ul>
-        </nav>
-    </header>
-    <main class="main-content">        
-        <h1 class="product__title">Mis productos</h1>
+@extends('layouts/layout')
+    @section('main-content')       
+        <h1 class="product__title">Mis productos disponibles</h1>
         <hr>
         <ul class="product__list">
             @foreach ($products as $product)
@@ -84,9 +44,4 @@
                 </li>
             @endforeach
         </ul>
-    </main>
-    <footer class="main-footer">
-        <p>Desarrollado por <a href="#">Ramón Sánchez</a></p>
-    </footer>
-</body>
-</html>
+    @endsection
