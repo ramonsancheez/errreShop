@@ -2,7 +2,7 @@
     @section('main-content')
         <div class="form">
             <h2 class="form__title">Sube tu producto</h2>
-            <form action="{{ route('product.store') }}" id="form" method="POST" onsubmit="return validateForm()">
+            <form action="{{ route('product.store') }}" id="form" method="POST" onsubmit="validateForm()">
             @csrf
                 <div class="form__item">
                     <label for="name">Nombre:</label>

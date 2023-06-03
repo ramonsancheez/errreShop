@@ -21,13 +21,28 @@
         <nav>
             <ul class="main-header__nav">
                 <li class="main-header__nav__item">
-                    <a class="main-header__nav__link" href="{{ route('product.index') }}">Productos</a>
+                    <a class="main-header__nav__link" href="{{ route('product.index') }}">
+                        <img src="{{ asset('img/socialmedia/wallet.svg') }}" alt="Tienda" title="Tienda" />
+                        Puntos: {{ auth()->user()->points }}
+                    </a>
                 </li>
                 <li class="main-header__nav__item">
-                    <a class="main-header__nav__link" href="{{ route('product.create') }}">Subir Producto</a>
+                    <a class="main-header__nav__link" href="{{ route('product.index') }}">
+                        <img src="{{ asset('img/socialmedia/shopping.svg') }}" alt="Tienda" title="Tienda" />
+                        Productos
+                    </a>
                 </li>
                 <li class="main-header__nav__item">
-                    <a class="main-header__nav__link" title="Mi perfil" href="{{ route('product.my-products') }}">{{ auth()->user()->name }}</a>
+                    <a class="main-header__nav__link__add-product" href="{{ route('product.create') }}">
+                        <img src="{{ asset('img/socialmedia/plus.svg') }}" alt="Subir Producto" title="Subir Producto" />
+                        Subir Producto
+                    </a>
+                </li>
+                <li class="main-header__nav__item">
+                    <a class="main-header__nav__link" title="Mi perfil" href="{{ route('product.my-products') }}">
+                        <img src="{{ asset('img/socialmedia/user.svg') }}" alt="Mi perfil" title="Mi perfil" />
+                        {{ auth()->user()->name }}
+                    </a>
                 </li>
                 <li>
                     <a href="{{ route('logout') }}"

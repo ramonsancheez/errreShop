@@ -1,11 +1,13 @@
 @extends('layouts/layout')
     @section('main-content') 
         <div class="product-container">
-            <img class="product__image" src="https://placehold.co/400/" title="{{$product->name}}" alt="{{ $product->name }}">
-            <div class="product__info">
+                <img class="product__image" src="https://placehold.co/400/" title="{{$product->name}}" alt="{{ $product->name }}" width="175" height=225>
+                <div class="product__info">
                 <div class="product__info__prices">
                     <div class="product__info__price">{{$product->price}}€</div>
-                    <div class="product__info__discount" id="price__discounted">231€</div>
+                    <div class="product__info__discount" id="price__discounted">
+                        {{ $product->price - Auth::user()->points/100 }}€
+                    </div>
                 </div>
                 <div class="product__info__title">{{$product->name}}</div>
                 <div class="product__info__dif">
@@ -30,23 +32,31 @@
                             </form>
                         </div>
                     @else
-                        <form action="{{ route('product.purchase', $product) }}" method="POST">
-                            @csrf
-                            <button type="submit">Comprar producto</button>
-                        </form>
+                    <form action="{{ route('product.purchase', $product) }}" method="POST">
+                        @csrf
+                        <input type="hidden" id="purchaseButton" name="checkbox" value="0">
+                        <button type="submit">Comprar producto</button>
+                    </form>
 
+                    @if (Auth::user()->points > 0)
                         <div class="checkbox">
-                            ¿Desea usar sus puntos?<input type="checkbox" name="checkbox" id="checkbox" class="checkbox__custom" onclick="checkboxChecked()">
+                            ¿Desea usar sus puntos?
+                            <input type="checkbox" id="checkboxDiscount" class="checkbox__custom" onclick="updateCheckboxValue()">
                         </div>
+                    @endif
                         <script>
-                            function checkboxChecked() {
-                                var checkbox = document.getElementById("checkbox");
+                            function updateCheckboxValue() {
+                                var checkbox = document.getElementById("checkboxDiscount");
                                 var priceElement = document.querySelector(".product__info__price");
+                                var hiddenInput = document.getElementById("purchaseButton");
+
                                 if (checkbox.checked == true){
                                     priceElement.classList.add("crossed-out");
+                                    hiddenInput.value = '1';
                                     document.getElementById("price__discounted").style.display = "block";
                                 } else {
                                     priceElement.classList.remove("crossed-out");
+                                    hiddenInput.value = '0';
                                     document.getElementById("price__discounted").style.display = "none";
                                 }
                             }

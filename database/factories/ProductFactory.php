@@ -23,6 +23,7 @@ class ProductFactory extends Factory
             'price' => $this->faker->randomFloat(2, 1, 1000),
             'category_id' => function () { return Category::inRandomOrder()->first()->id;},
             'description' => $this->faker->paragraph(2),
+            'points' => $this->faker->numberBetween(1, 10),
             'state_id' => function () { return State::inRandomOrder()->first()->id;},
             'user_id' => 0,
         ];
