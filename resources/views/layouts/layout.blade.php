@@ -21,10 +21,8 @@
         <nav>
             <ul class="main-header__nav">
                 <li class="main-header__nav__item">
-                    <a class="main-header__nav__link" href="{{ route('product.index') }}">
-                        <img src="{{ asset('img/socialmedia/wallet.svg') }}" alt="Tienda" title="Tienda" />
-                        Puntos: {{ auth()->user()->points }}
-                    </a>
+                    <img src="{{ asset('img/socialmedia/wallet.svg') }}" alt="Tienda" title="Tienda" />
+                    Puntos:{{ auth()->user()->points }}
                 </li>
                 <li class="main-header__nav__item">
                     <a class="main-header__nav__link" href="{{ route('product.index') }}">
@@ -33,7 +31,7 @@
                     </a>
                 </li>
                 <li class="main-header__nav__item">
-                    <a class="main-header__nav__link__add-product" href="{{ route('product.create') }}">
+                    <a class="main-header__nav__link" href="{{ route('product.create') }}">
                         <img src="{{ asset('img/socialmedia/plus.svg') }}" alt="Subir Producto" title="Subir Producto" />
                         Subir Producto
                     </a>
@@ -62,6 +60,15 @@
             <label for="search"></label>
             <input placeholder="Busca tu producto" type="search" id="searchbox" onkeyup="search()">
         </div>
+
+        <div class="filter">
+            @foreach(range(1, 9) as $category)
+                <a href="{{ route('products.filter', $category) }}">
+                    <img src="{{ asset('img/svg/category' . $category . '.svg') }}" alt="filtro" title="Categoría">
+                </a>
+            @endforeach
+        </div>
+        
     @endif
 
 
