@@ -1,7 +1,8 @@
 @extends('layouts/layout')
     @section('main-content')
+    <div class="form__container">
         <div class="form">
-            <h2 class="form__title">Sube tu producto</h2>
+            <h2 class="form__title">Información del producto</h2>
             <form action="{{ route('product.store') }}" id="form" method="POST" onsubmit="validateForm()">
             @csrf
                 <div class="form__item">
@@ -37,4 +38,5 @@
                 <button class="submit" type="submit">Crear Producto</button>
             </form>
         </div>
+    </div>
     @endsection

@@ -1,7 +1,10 @@
 @extends('layouts/layout')
     @section('main-content') 
         <div class="product-container">
-                <img class="product__image" src="https://placehold.co/400/" title="{{$product->name}}" alt="{{ $product->name }}" width="175" height=225>
+            <div class="product__image__container">
+                <img class="product__image" src="https://placehold.co/400/" title="{{$product->name}}" alt="{{ $product->name }}"">
+                <div class="product__image__points">{{$product->points}} PTS</div>
+            </div>
                 <div class="product__info">
                 <div class="product__info__prices">
                     <div class="product__info__price">{{$product->price}}€</div>
@@ -15,7 +18,7 @@
                     <div class="product__info__state">{{$product->state->name}}</div>
                 </div>    
                 <hr>
-                <div class="product__info__points">Puntos: {{$product->points}}</div>
+                
                 <div class="product__info__description">{{$product->description}}</div>
                 <div class="product__info__toDo">
                     @if ($product->user_id != Auth::user()->id && $product->buyer_id == Auth::user()->id)
@@ -38,7 +41,7 @@
                         <button type="submit">Comprar producto</button>
                     </form>
 
-                    @if (Auth::user()->points > 0)
+                    @if (Auth::user()->points > 0 && ($product->price - Auth::user()->points/100 >= 2))
                         <div class="checkbox">
                             ¿Desea usar sus puntos?
                             <input type="checkbox" id="checkboxDiscount" class="checkbox__custom" onclick="updateCheckboxValue()">

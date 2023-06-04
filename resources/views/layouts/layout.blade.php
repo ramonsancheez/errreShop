@@ -5,18 +5,23 @@
     <link href="/css/app.css" rel="stylesheet">
     <script src="/js/app.js" defer></script>
     <link href="https://fonts.googleapis.com/css2?family=Space+Mono&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&display=swap" rel="stylesheet">
 </head>
 
-<body onscroll="addScroll()" id="home" class="home">
+<body onscroll="addScroll()" id="home" class="home {{ session('status') ? 'modal-open' : '' }}">
     @if (session('status'))
-        <div class="alert alert-success">
-            {{ session('status') }}
+        <div class="alert__modal" id="alert-modal">
+            <img class="close__modal" src="{{ asset('img/svg/close.svg') }}" alt="Close modal" title="Cierra" onclick="closeAlertModal()" />
+            <div class="alert__modal-container">
+                {{ session('status') }}
+            </div>
         </div>
     @endif
     <header class="main-header">
         <a href="/products">
-            <h1 class="main-header__title">eRRRe</h1>
-            <h3 class="main-header__subtitle">Recycle, reduce, reuse</h3>
+            <img class="main-header__logo" src="{{ asset('img/logos/logo.png') }}" alt="Logo" title="Logo" width="300px" />
         </a>
         <nav>
             <ul class="main-header__nav">
@@ -62,12 +67,12 @@
         </div>
 
         <div class="filter">
-            @foreach(range(1, 9) as $category)
-                <a href="{{ route('products.filter', $category) }}">
-                    <img src="{{ asset('img/svg/category' . $category . '.svg') }}" alt="filtro" title="Categoría">
+            @foreach(range(1, 9) as $categoryItem)
+                <a href="{{ route('products.filter', $categoryItem) }}">
+                    <img src="{{ asset('img/svg/category' . $categoryItem . '.svg') }}" alt="filtro" title="Categoría">
                 </a>
             @endforeach
-        </div>
+        </div>        
         
     @endif
 
@@ -78,11 +83,33 @@
         @yield('main-content')
     </main>
 
+
     <footer class="main-footer">
-        <p>Desarrollado por <a href="#">Ramón Sánchez</a></p>
-        <a href="https://www.instagram.com/ramonsancheez_" target="_blank">
-            <img src="{{ asset('img/socialmedia/instagram.svg') }}" alt="Compartir en Instagram">
-        </a>
+        <img class="main-header__logo" src="{{ asset('img/logos/logo.png') }}" alt="Logo" title="Logo" width="300px" />
+        <div class="main-footer__columns">
+            <div class="main-footer__links" target="_blank">
+                <a href="{{ route('product.index') }}">Productos</a>
+                <a href="{{ route('product.create') }}">Subir Producto</a>
+                <a href="{{ route('product.my-products') }}">Mi perfil</a>
+            </div>
+            <div class="main-footer__socialmedia">
+                Síguenos en nuestras redes sociales
+                <div class="main-footer__socialmedia__icons">
+                    <a href="https://www.facebook.com/" target="_blank">
+                        <img src="{{ asset('img/socialmedia/facebook.svg') }}" alt="Facebook" title="Facebook" />
+                    </a>
+                    <a href="https://www.instagram.com/" target="_blank">
+                        <img src="{{ asset('img/socialmedia/instagram.svg') }}" alt="Instagram" title="Instagram" />
+                    </a>
+                    <a href="https://www.twitter.com/">
+                        <img src="{{ asset('img/socialmedia/twitter.svg') }}" alt="Twitter" title="Twitter" />
+                    </a>
+                </div>
+            </div>
+            <div class="main-footer__slogan">
+                Renueva tu estilo, recicla tu gusto. Únete a nuestra app de compra venta y dale una segunda vida a lo que ya no usas
+            </div>
+        </div>
     </footer>
 </body>
 </html>
