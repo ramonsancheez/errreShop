@@ -12,14 +12,17 @@ use App\Models\State;
 class ProductController extends Controller
 {
     public function index()
-    {
-        $products = Product::select('id', 'name', 'price', 'description','points', 'category_id', 'state_id')->where('buyer_id', 0)->get();
-        return view('products.index', ['products' => $products]);
-    }
+{
+    $products = Product::select('id', 'name', 'price', 'description','points', 'category_id','created_at', 'state_id')->where('buyer_id', 0)->get();
+    $recentProducts = Product::orderBy('created_at', 'desc')->take(10)->get();
+    return view('products.index', ['products' => $products, 'recentProducts' => $recentProducts]);
+}
 
-    public function show(Product $product)
+
+    public function show(Request $request,  Product $product)
     {
-        return view('products.show', ['product' => $product]);
+        $productUrl = $request->url();
+        return view('products.show', ['product' => $product, 'productUrl' => $productUrl]);
     }
     
     public function create()
@@ -51,7 +54,7 @@ class ProductController extends Controller
         $product->category_id = $request->category_id;
         $product->save();
 
-        return to_route('product.index')->with('status', 'Product created successfully');
+        return to_route('product.index')->with('status', 'Tu producto ' . $product->name . ' ya está a la venta por un precio de ' . $product->price . '€');
 
     }
 
@@ -79,13 +82,13 @@ class ProductController extends Controller
         $product->category_id = $request->category_id;
         $product->save();
 
-        return to_route('product.index')->with('status', 'Product updated successfully');
+        return to_route('product.index')->with('status', 'Estás de enhorabuena, tu producto ' . $product->name . ' ha sido actualizado con éxito');
     }
 
     public function destroy(Product $product)
     {
         $product->delete();
-        return redirect()->route('product.index')->with('status', 'Product deleted successfully');
+        return redirect()->route('product.index')->with('status', 'Oh vaya, has eliminado el producto ' . $product->name . ' con éxito');
     }    
 
     public function myProducts()
@@ -97,21 +100,45 @@ class ProductController extends Controller
         return view('products.my-products', ['products' => $products, 'purchasedProducts' => $purchasedProducts, 'soldProducts' => $soldProducts]);
     }
 
-    public function purchase(Product $product)
+    public function filterByCategory($category)
+    {
+        $products = Product::where('category_id', $category)->where('user_id', '!=', Auth::user()->id)->get();
+        $recentProducts = Product::orderBy('created_at', 'desc')->take(10)->get();
+        return view('products.index', compact('products', 'recentProducts'));
+    }
+
+
+
+    public function purchase(Request $request, Product $product)
     {
         $user = Auth::user();
         $product->buyer_id = $user->id;
         $product->save();
+
+        $buyer = Auth::user();
+        if ($request->input('checkbox') == 1) {
+            $buyer->points = 0;
+        } else {
+            $buyer->points += $product->points;
+        }
+        $buyer->save();
+
+        $seller = $product->user;
+        $seller->points += $product->points;
+        $seller->save();
 
         $transaction = new Transaction();
         $transaction->user_id = $product->user_id;
         $transaction->buyer_id = $user->id;
         $transaction->points = $product->points;
         $transaction->product_id = $product->id;
-        $transaction->price = $product->price;
+        $transaction->profit_seller = $product->price*0.98;
+        $transaction->profit_company = $product->price*0.02;
+        $transaction->total_price = $product->price;
         $transaction->save();
+
         
-        return redirect()->route('product.index')->with('status', 'Product purchased successfully');
+        return redirect()->route('product.index')->with('status', 'Enhorabuena, has comprado el producto ' . $product->name . ' por ' . $product->price . '€');
     }
 }
 

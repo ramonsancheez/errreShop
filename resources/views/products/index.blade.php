@@ -12,7 +12,7 @@
                             <div class="carousel-track" id="track">
                                 <ul>
                                     @foreach ($recentProducts as $recentProduct)
-                                        @if ($recentProduct->user_id !== Auth::id() && $recentProduct->buyer_id !== Auth::id())
+                                        {{-- @if ($recentProduct->user_id !== Auth::id() && $recentProduct->buyer_id !== Auth::id()) --}}
                                             <li class="product">
                                                 <a href="/products/{{$recentProduct->id}}">
                                                     <img class="product__image" src="https://placehold.co/170x225/" title="{{$recentProduct->name}}" alt="{{ $recentProduct->name }}">
@@ -20,7 +20,7 @@
                                                     <div class="product__price">{{ $recentProduct->price }}€</div>
                                                 </a>
                                             </li>
-                                        @endif
+                                        {{-- @endif --}}
                                     @endforeach
                                 </ul>
                             </div>
