@@ -127,13 +127,14 @@ class ProductController extends Controller
         $seller->points += $product->points;
         $seller->save();
 
+        $profitPercentage = env('PROFIT_PERCENTAGE');
         $transaction = new Transaction();
         $transaction->user_id = $product->user_id;
         $transaction->buyer_id = $user->id;
         $transaction->points = $product->points;
         $transaction->product_id = $product->id;
-        $transaction->profit_seller = $product->price*0.98;
-        $transaction->profit_company = $product->price*0.02;
+        $transaction->profit_seller = $product->price-(1 - $profitPercentage);
+        $transaction->profit_company = $product->price*$profitPercentage;
         $transaction->total_price = $product->price;
         $transaction->save();
 
