@@ -26,12 +26,12 @@
         <nav>
             <ul class="main-header__nav">
                 <li class="main-header__nav__item">
-                    <img src="{{ asset('img/socialmedia/wallet.svg') }}" alt="Tienda" title="Tienda" />
+                    <img src="{{ asset('img/socialmedia/wallet.svg') }}" alt="Tus puntos" title="Tus puntos" />
                     Puntos:{{ auth()->user()->points }}
                 </li>
                 <li class="main-header__nav__item">
                     <a class="main-header__nav__link" href="{{ route('product.index') }}">
-                        <img src="{{ asset('img/socialmedia/shopping.svg') }}" alt="Tienda" title="Tienda" />
+                        <img src="{{ asset('img/socialmedia/shopping.svg') }}" alt="Productos" title="Productos" />
                         Productos
                     </a>
                 </li>
@@ -41,12 +41,21 @@
                         Subir Producto
                     </a>
                 </li>
-                <li class="main-header__nav__item">
-                    <a class="main-header__nav__link" title="Mi perfil" href="{{ route('product.my-products') }}">
-                        <img src="{{ asset('img/socialmedia/user.svg') }}" alt="Mi perfil" title="Mi perfil" />
-                        {{ auth()->user()->name }}
-                    </a>
-                </li>
+                @if(auth()->user()->role === 'admin')
+                    <li class="main-header__nav__item">
+                        <a class="main-header__nav__link" href="{{ route('admin.index') }}">
+                            <img src="{{ asset('img/socialmedia/user.svg') }}" alt="Admin" title="Admin" />
+                            Admin
+                        </a>
+                    </li>
+                @else
+                    <li class="main-header__nav__item">
+                        <a class="main-header__nav__link" title="Mi perfil" href="{{ route('product.my-products') }}">
+                            <img src="{{ asset('img/socialmedia/user.svg') }}" alt="Mi perfil" title="Mi perfil" />
+                            {{ auth()->user()->name }}
+                        </a>
+                    </li>
+                @endif
                 <li>
                     <a href="{{ route('logout') }}"
                         onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
@@ -73,16 +82,11 @@
                 </a>
             @endforeach
         </div>        
-        
     @endif
-
-
-    </div>
 
     <main class="main-content">
         @yield('main-content')
     </main>
-
 
     <footer class="main-footer">
         <img class="main-header__logo" src="{{ asset('img/logos/logo.png') }}" alt="Logo" title="Logo" width="300px" />

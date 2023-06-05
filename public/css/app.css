@@ -85,6 +85,8 @@ ul, a {
   text-transform: capitalize;
   font-weight: 600;
   margin-top: 5px;
+  font-size: 20px;
+  margin-bottom: 0;
 }
 .main-content .product__price {
   margin-top: 5px;
@@ -416,6 +418,7 @@ input:checked[type=checkbox]:before {
 
 .carousel-track {
   display: flex;
+  padding-top: 5px;
   transition: transform 0.5s ease-in-out;
 }
 
@@ -438,4 +441,24 @@ input:checked[type=checkbox]:before {
 
 .carousel__arrow {
   cursor: pointer;
+}
+
+.transaction-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+.transaction-table th,
+.transaction-table td {
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+.transaction-table th {
+  background-color: #f2f2f2;
+}
+.transaction-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+.transaction-table tr:hover {
+  background-color: #eaeaea;
 }

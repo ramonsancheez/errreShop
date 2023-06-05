@@ -17,7 +17,9 @@ return new class extends Migration
             $table->foreignId('buyer_id')->constrained('users');
             $table->integer('points');
             $table->foreignId('product_id')->constrained();
-            $table->float('price');
+            $table->float('total_price');
+            $table->float('profit_seller');
+            $table->float('profit_company');
             $table->timestamps();
         });
     }

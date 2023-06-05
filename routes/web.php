@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,6 +24,9 @@ Route::resource('products', ProductController::class, [
     'names' => 'product',
     'parameters' => ['products' => 'product']
 ]);
+
+Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
+
 
 Route::get('/products/filter/{categoryId}', [ProductController::class, 'filterByCategory'])->name('products.filter');
 Route::post('products/{product}/purchase', [ProductController::class, 'purchase'])->name('product.purchase');
