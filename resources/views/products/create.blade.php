@@ -1,5 +1,8 @@
 @extends('layouts/layout')
     @section('main-content')
+    @php
+        $bodyClass = Route::current()->uri === 'products/create' ? 'form-bckg' : '';
+    @endphp
     <div class="form__container">
         <div class="form">
             <h2 class="form__title">Información del producto</h2>
@@ -39,4 +42,7 @@
             </form>
         </div>
     </div>
+    <script>
+        document.body.classList.add("{{ $bodyClass }}");
+    </script>
     @endsection
