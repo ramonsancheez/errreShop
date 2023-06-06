@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Category;
+use App\Models\Product;
 use App\Models\State;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -20,12 +21,23 @@ class ProductFactory extends Factory
     {
         return [
             'name' => $this->faker->word,
-            'price' => $this->faker->randomFloat(2, 1, 1000),
+            'price' => $this->faker->randomFloat(2, 5, 100),
             'category_id' => function () { return Category::inRandomOrder()->first()->id;},
             'description' => $this->faker->paragraph(2),
             'points' => $this->faker->numberBetween(1, 10),
             'state_id' => function () { return State::inRandomOrder()->first()->id;},
             'user_id' => 0,
         ];
+    }
+
+    public function configure()
+    {
+        return $this->afterCreating(function (Product $product) {
+            $categoryId = $product->category->id;
+            $randomNumber = random_int(1, 5);
+            $imageUrl = "/img/categories/{$categoryId}/{$randomNumber}.jpg";
+            $product->image_url = $imageUrl;
+            $product->save();
+        });
     }
 }

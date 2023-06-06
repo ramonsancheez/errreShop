@@ -12,15 +12,23 @@
                             <div class="carousel-track" id="track">
                                 <ul>
                                     @foreach ($recentProducts as $recentProduct)
-                                        {{-- @if ($recentProduct->user_id !== Auth::id() && $recentProduct->buyer_id !== Auth::id()) --}}
+                                        @if($user->role == "admin")
                                             <li class="product">
                                                 <a href="/products/{{$recentProduct->id}}">
-                                                    <img class="product__image" src="https://placehold.co/170x225/" title="{{$recentProduct->name}}" alt="{{ $recentProduct->name }}">
+                                                    <img class="product__image" src="{{$recentProduct->image_url}}" title="{{$recentProduct->name}}" alt="{{ $recentProduct->name }}" width="200" height="200">
                                                     <h2 class="product__name">{{ $recentProduct->name }}</h2>
                                                     <div class="product__price">{{ $recentProduct->price }}€</div>
                                                 </a>
                                             </li>
-                                        {{-- @endif --}}
+                                        @elseif ($recentProduct->user_id !== Auth::id() && $recentProduct->is_active == true)
+                                            <li class="product">
+                                                <a href="/products/{{$recentProduct->id}}">
+                                                    <img class="product__image" src="{{$recentProduct->image_url}}" title="{{$recentProduct->name}}" alt="{{ $recentProduct->name }}" width="200" height="200">
+                                                    <h2 class="product__name">{{ $recentProduct->name }}</h2>
+                                                    <div class="product__price">{{ $recentProduct->price }}€</div>
+                                                </a>
+                                            </li>
+                                        @endif
                                     @endforeach
                                 </ul>
                             </div>
@@ -34,14 +42,24 @@
         <section>
             <h3 class="products__title">Todos los productos</h3>
             <ul class="product__list" id="store-products">
-                @foreach($products->reverse() as $product)
-                    <li class="product">
-                        <a href="/products/{{$product->id}}">
-                            <img class="product__image" src="https://placehold.co/170x225/" title="{{$product->name}}" alt="{{ $product->name }}">
-                            <h2 class="product__name">{{ $product->name }}</h2>
-                            <div class="product__price">{{ $product->price }}€</div>
-                        </a>
-                    </li>
+                @foreach($products as $product)
+                    @if($user->role == "admin")
+                        <li class="product">
+                            <a href="/products/{{$product->id}}">
+                                <img class="product__image" src="{{$product->image_url}}" title="{{ $product->name }}" alt="{{ $product->name }}" width="200" height="200">
+                                <h2 class="product__name">{{ $product->name }}</h2>
+                                <div class="product__price">{{ $product->price }}€</div>
+                            </a>
+                        </li>
+                    @elseif($product->user_id != Auth::id() && $product->is_active == true)
+                        <li class="product">
+                            <a href="/products/{{$product->id}}">
+                                <img class="product__image" src="{{$product->image_url}}" title="{{ $product->name }}" alt="{{ $product->name }}" width="200" height="200">
+                                <h2 class="product__name">{{ $product->name }}</h2>
+                                <div class="product__price">{{ $product->price }}€</div>
+                            </a>
+                        </li>
+                    @endif
                 @endforeach
             </ul>
         </section>

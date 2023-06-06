@@ -8,21 +8,26 @@ use App\Models\Product;
 use App\Models\Category;
 use App\Models\Transaction;
 use App\Models\State;
+use App\Models\User;
 
 class ProductController extends Controller
 {
     public function index()
-{
-    $products = Product::select('id', 'name', 'price', 'description','points', 'category_id','created_at', 'state_id')->where('buyer_id', 0)->get();
-    $recentProducts = Product::orderBy('created_at', 'desc')->take(10)->get();
-    return view('products.index', ['products' => $products, 'recentProducts' => $recentProducts]);
-}
+    {
+        $products = Product::select('id', 'name','image_url','is_active', 'price', 'description','points', 'category_id','created_at', 'state_id')->where('buyer_id', 0)->get();
+        $recentProducts = Product::orderBy('created_at', 'desc')->take(10)->get();
+        
+        $user = Auth::user();
+        $products_image = Product::with('category')->get();
+        return view('products.index', ['products' => $products, 'recentProducts' => $recentProducts, 'products_image' => $products_image, 'user' => $user]);
+    }
 
 
     public function show(Request $request,  Product $product)
     {
+        $user = Auth::user();
         $productUrl = $request->url();
-        return view('products.show', ['product' => $product, 'productUrl' => $productUrl]);
+        return view('products.show', ['product' => $product, 'productUrl' => $productUrl, 'user' => $user]);
     }
     
     public function create()
@@ -52,6 +57,8 @@ class ProductController extends Controller
         $product->description = $request->description;
         $product->user_id = $user->id;
         $product->category_id = $request->category_id;
+        $randImg = rand(1, 5);
+        $product->image_url = "/img/categories/{$request->category_id}/{$randImg}.jpg";
         $product->save();
 
         return to_route('product.index')->with('status', 'Tu producto ' . $product->name . ' ya está a la venta por un precio de ' . $product->price . '€');
@@ -80,6 +87,8 @@ class ProductController extends Controller
         $product->state_id = $request->state_id;
         $product->description = $request->description;
         $product->category_id = $request->category_id;
+        $randImg = rand(1, 4);
+        $product->image_url = "/img/categories/{$request->category_id}/{$randImg}.jpg";
         $product->save();
 
         return to_route('product.index')->with('status', 'Estás de enhorabuena, tu producto ' . $product->name . ' ha sido actualizado con éxito');
@@ -94,25 +103,27 @@ class ProductController extends Controller
     public function myProducts()
     {
         $user = Auth::user();
-        $products = Product::select('id', 'name', 'price', 'description', 'category_id', 'state_id')->where('buyer_id', 0)->where('user_id', $user->id)->get();
-        $purchasedProducts = Product::select('id', 'name', 'price', 'description', 'category_id', 'state_id')->where('buyer_id', $user->id)->get();
-        $soldProducts = Product::select('id', 'name', 'price', 'description', 'category_id', 'state_id')->where('user_id', $user->id)->where('buyer_id', '!=', 0)->get();
+        $products = Product::select('id', 'name', 'price','image_url', 'description', 'category_id', 'state_id')->where('buyer_id', 0)->where('user_id', $user->id)->get();
+        $purchasedProducts = Product::select('id', 'name', 'price','image_url', 'description', 'category_id', 'state_id')->where('buyer_id', $user->id)->get();
+        $soldProducts = Product::select('id', 'name', 'price', 'description','image_url', 'category_id', 'state_id')->where('user_id', $user->id)->where('buyer_id', '!=', 0)->get();
         return view('products.my-products', ['products' => $products, 'purchasedProducts' => $purchasedProducts, 'soldProducts' => $soldProducts]);
     }
 
     public function filterByCategory($category)
     {
-        $products = Product::where('category_id', $category)->where('user_id', '!=', Auth::user()->id)->get();
+        
+        $products = Product::select('id', 'name', 'price', 'description','image_url', 'category_id', 'state_id')->where('category_id', $category)->where('buyer_id', 0)->get();
         $recentProducts = Product::orderBy('created_at', 'desc')->take(10)->get();
-        return view('products.index', compact('products', 'recentProducts'));
+        $user = Auth::user();
+        $products_image = Product::with('category')->get();
+        return view('products.index', ['products' => $products, 'recentProducts' => $recentProducts, 'products_image' => $products_image, 'user' => $user]);
     }
-
-
 
     public function purchase(Request $request, Product $product)
     {
         $user = Auth::user();
         $product->buyer_id = $user->id;
+        $product->is_active = false;
         $product->save();
 
         $buyer = Auth::user();
