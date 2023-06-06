@@ -25,8 +25,10 @@ Route::resource('products', ProductController::class, [
     'parameters' => ['products' => 'product']
 ]);
 
-Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
-
+Route::resource('admin', AdminController::class, [
+    'names' => 'admin',
+    'parameters' => ['admin' => 'admin']
+]);
 
 Route::get('/products/filter/{categoryId}', [ProductController::class, 'filterByCategory'])->name('products.filter');
 Route::post('products/{product}/purchase', [ProductController::class, 'purchase'])->name('product.purchase');

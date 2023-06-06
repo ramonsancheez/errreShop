@@ -2,7 +2,7 @@
     @section('main-content') 
         <div class="product-container">
             <div class="product__image__container">
-                <img class="product__image" src="https://placehold.co/400/" title="{{$product->name}}" alt="{{ $product->name }}"">
+                <img class="product__image" src="{{$product->image_url}}" title="{{ $product->name }}"   alt="{{ $product->name }}" width="400" height="400">
                 <div class="product__image__points">{{$product->points}} PTS</div>
             </div>
                 <div class="product__info">
@@ -21,7 +21,15 @@
                 
                 <div class="product__info__description">{{$product->description}}</div>
                 <div class="product__info__toDo">
-                    @if ($product->user_id != Auth::user()->id && $product->buyer_id == Auth::user()->id)
+                    @if($user->role == "admin")
+                        <div class="product__info__delete">
+                            <form action="{{ route('product.destroy', $product) }}" method="POST">
+                                @csrf
+                                @method('delete')
+                                <button type="submit">Eliminar</button>
+                            </form>
+                        </div>
+                    @elseif ($product->user_id != Auth::user()->id && $product->buyer_id == Auth::user()->id)
                         <div class="product__info__sold">Comprado a: {{ $product->user_id}}</div>
                     @elseif ($product->buyer_id != 0 && $product->user_id == Auth::user()->id)
                         <div class="product__info__sold">Vendido a: {{ $product->buyer_id }}</div>
