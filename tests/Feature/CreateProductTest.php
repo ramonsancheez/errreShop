@@ -9,24 +9,25 @@ class CreateProductTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_create_product()
+    public function testCrearProducto()
     {
-        $response = $this->post('/products', [
-            'name' => 'test porducto',
-            'price' => 1,
-            'user_id' => 0,
+        $data = [
+            'name' => 'Producto de prueba',
             'category_id' => 1,
-            'description' => 'Descripción del producto',
-            'state_id' => 1,
-        ]);
+            'price' => 10.99,
+            'description' => 'Descripción de prueba',
+            'points' => 1,
+            'state_id' => 1, 
+        ];
 
-        $response->assertStatus(201);
-        $this->assertDatabaseHas('products', ['name' => 'Nuevo producto']);
+        $response = $this->post(route('product.store'), $data);
+        $response->assertStatus(302);
+        $this->assertDatabaseHas('products', $data);
     }
 
     public function test_create_product_with_invalid_price()
     {
-        $response = $this->post('/products', [
+        $response = $this->post(route('product.store'), [
             'name' => 'test porducto',
             'price' => 'invalid price',
             'user_id' => 0,

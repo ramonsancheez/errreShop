@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+
 use Tests\TestCase;
 use App\Models\Product;
 
@@ -13,11 +14,11 @@ class DeleteProductTest extends TestCase
 
     public function test_delete_product()
     {
-        $product = Product::factory()->create();
+        $product = factory(Product::class)->create();
 
-        $response = $this->delete('/products/'.$product->id);
+        $response = $this->delete(route('product.destroy', $product->id));
 
-        $response->assertStatus(204);
+        $response->assertStatus(302);
 
         $this->assertDatabaseMissing('products', ['id' => $product->id]);
     }
