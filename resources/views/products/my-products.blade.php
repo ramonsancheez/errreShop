@@ -1,7 +1,7 @@
 @extends('layouts/layout')
     @section('main-content')       
-        <h1 class="product__title">Mis productos disponibles</h1>
-        <hr>
+        <h1 class="product__title">¡Hola, {{ auth()->user()->name }}!</h1>
+        <h2 class="product__subtitle">Estos son tus productos publicados actualmente:</h2>
         <ul class="product__list">
             @foreach ($products as $product)
                 <li class="product">
@@ -14,9 +14,7 @@
                 </li>
             @endforeach
         </ul>
-        <hr>
-        <h2 class="product__title">Mis compras</h2>
-        <hr>
+        <h2 class="product__subtitle">Estas son tus compras:</h2>
         <ul class="product__list">
             @foreach ($purchasedProducts as $purchasedProduct)
                 <li class="product">
@@ -29,9 +27,7 @@
                 </li>
             @endforeach
         </ul>
-        <hr>
-        <h2 class="product__title">Mis ventas</h2>
-        <hr>
+        <h2 class="product__subtitle">Y estas son tus ventas:</h2>
         <ul class="product__list">
             @foreach ($soldProducts as $soldProduct)
                 <li class="product">

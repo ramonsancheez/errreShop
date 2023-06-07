@@ -6,7 +6,7 @@
     <div class="form__container">
         <div class="form">
             <h2 class="form__title">Información del producto</h2>
-            <form action="{{ route('product.store') }}" id="form" method="POST" onsubmit="validateForm()">
+            <form action="{{ route('product.store') }}" id="form" method="POST" onsubmit="return validateForm()">
             @csrf
                 <div class="form__item">
                     <label for="name">Nombre:</label>
@@ -18,7 +18,7 @@
                 </div>
                 <div class="form__item">
                     <label for="description">Descripción:</label>
-                    <textarea placeholder="Añade información necesaria" name="description" id="description" value="{{old('description')}}"></textarea>
+                    <textarea placeholder="Añade información necesaria" name="description" id="description" value="{{old('description')}}" maxlength="255"></textarea>
                 </div>
                 <div class="form__select">
                     <div class="form__item">

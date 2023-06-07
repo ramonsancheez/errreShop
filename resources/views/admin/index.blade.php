@@ -7,8 +7,8 @@
                     <th>ID</th>
                     <th>Comprador</th>
                     <th>Vendedor</th>
-                    <th>% para vendedor</th>
-                    <th>% para empresa</th>
+                    <th>% para vendedor €</th>
+                    <th>% para empresa €</th>
                     <th>€ total</th>
                     <th>Fecha</th>
                 </tr>
@@ -26,6 +26,13 @@
                         <td>{{ $transaction->created_at->format('Y-m-d H:i:s') }}</td>
                     </tr>
                 @endforeach
+                <tr>
+                    <td colspan="3"></td>
+                    <td>{{ $transactions->sum('profit_seller') }}</td>
+                    <td>{{ $transactions->sum('profit_company') }}</td>
+                    <td>{{ $transactions->sum('total_price') }}</td>
+                    <td></td>
+                </tr>
             </tbody>
         </table>
         <h2>Lista de Usuarios</h2>

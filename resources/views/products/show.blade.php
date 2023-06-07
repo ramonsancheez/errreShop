@@ -78,7 +78,7 @@
             </div>
         </div>
         <div class="product__info__link">
-            <a class="product__info__back"href="{{route('product.index')}}">Volver</a>
+            <a class="product__info__back" href="{{ url()->previous() }}">Volver</a>
         </div>
         
         <div class="share-socialmedia">

@@ -15,7 +15,7 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::select('id', 'name','image_url','is_active', 'price', 'description','points', 'category_id','created_at', 'state_id')->where('buyer_id', 0)->get();
-        $recentProducts = Product::orderBy('created_at', 'desc')->take(10)->get();
+        $recentProducts = Product::orderBy('created_at', 'desc')->take(15)->get();
         
         $user = Auth::user();
         $products_image = Product::with('category')->get();
@@ -112,7 +112,7 @@ class ProductController extends Controller
     public function filterByCategory($category)
     {
         
-        $products = Product::select('id', 'name', 'price', 'description','image_url', 'category_id', 'state_id')->where('category_id', $category)->where('buyer_id', 0)->get();
+        $products = Product::select('id', 'name','user_id','is_active', 'price', 'description','image_url', 'category_id', 'state_id')->where('category_id', $category)->where('buyer_id', 0)->get();
         $recentProducts = Product::orderBy('created_at', 'desc')->take(10)->get();
         $user = Auth::user();
         $products_image = Product::with('category')->get();
@@ -150,7 +150,7 @@ class ProductController extends Controller
         $transaction->save();
 
         
-        return redirect()->route('product.index')->with('status', 'Enhorabuena, has comprado el producto ' . $product->name . ' por ' . $product->price . '€');
+        return redirect()->route('product.index')->with('status', 'Enhorabuena, has comprado el producto ' . $product->name . ' con éxito');
     }
 }
 

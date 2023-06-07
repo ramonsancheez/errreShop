@@ -83,7 +83,19 @@ ul, a{
             font-size: 36px;
             font-weight: 500;
             margin-bottom: 0;
+            margin-top: 0;
             font-family: 'Roboto Slab', serif;
+        }
+
+        &__content{
+            &-title{
+                text-align: center;
+                font-size: 36px;
+                font-weight: 500;
+                margin-bottom: 0;
+                font-family: 'Roboto Slab', serif;
+                padding-top: 75px;
+            }
         }
         &__subtitle{
             font-size: 24px;
