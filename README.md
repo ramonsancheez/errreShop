@@ -1,66 +1,49 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# INTRODUCCIÓN
+En el contexto de una sociedad cada vez más consciente de la importancia de la sostenibilidad y la economía circular, surge la necesidad de desarrollar soluciones innovadoras que promuevan la reducción, el reciclaje y la reutilización de productos.La creación de "errre", tiene como objetivo principal una página web de compra/venta de artículos de segunda mano que busca revolucionar la forma en que las personas adquieren y desechan objetos.
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+"errre" se presenta como una plataforma digital que va más allá de las tradicionales páginas de comercio electrónico. Nuestra propuesta se destaca por la implementación de un sistema de puntos, donde cada artículo adquirido o vendido otorgará a los usuarios una determinada cantidad de puntos. Estos puntos acumulados podrán ser posteriormente canjeados por descuentos en futuras transacciones. De esta manera, no solo incentivamos la compra de productos usados, sino que también recompensamos a nuestros usuarios por su compromiso con la sostenibilidad y la economía circular.
 
-## About Laravel
+El objetivo principal de "errre" es crear una comunidad comprometida con los valores de reducir, reciclar y reutilizar. Nuestra plataforma ofrecerá una experiencia intuitiva y atractiva, donde los usuarios podrán explorar una amplia variedad de categorías de productos de segunda mano, desde moda y hogar hasta tecnología y ocio. Asimismo, fomentaremos la educación y concienciación sobre la importancia de prolongar la vida útil de los objetos y realizar compras más sostenibles.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+El presente anteproyecto abordará tanto los aspectos técnicos como los funcionales de "errre". Se realizará un análisis de los requisitos, se diseñará una base de datos para almacenar la información, y se implementará una interfaz de usuario atractiva y fácil de usar.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+En conclusión, "errre" se posiciona como una alternativa innovadora en el mercado de compra/venta de artículos de segunda mano, brindando una plataforma única que premia la sostenibilidad y la participación activa de los usuarios. A través de la implementación de un sistema de puntos y descuentos, buscamos promover un estilo de vida más consciente y contribuir al desarrollo de una sociedad más sostenible y responsable con el medio ambiente.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+# LÓGICA DE LA EMPRESA
+- Como comprador: Cada vez que se obtenga un producto, se le asignarán los puntos que valga ese producto. Una vez tenga más de 0 puntos, éstos ya pueden ser utilizados para obtener descuentos en todos los productos de la web. Se obtendrán puntos siempre que no se utilicen puntos para la compra de un artículo, en caso de que se utilizen, el contador volverá a 0. Para evitar precios negativos, ponemos un mínimo de 5€ (si la resta del precio - el descuento del cliente es inferior a 5€, no se podrán utilizar los puntos).
 
-## Learning Laravel
+- Como vendedor: Los puntos se asigarán según el peso del producto, para incentivar a la reutilización de los productos más dañinos para el medio ambiente. Si el peso del producto se encuentra entre los 0-2kg, se le asignarán de 1 a 2 puntos. Si el peso está entre los 3-5kg, se le asignarán de 3-5 puntos. Si el peso es inferior a 10 kg se le asignarán a su producto entre 6-8 puntos, y, si el peso supera los 10kg, se le asignarán de 9-10 puntos. Cada vez que venda un producto se le asignarán los atribuidos a éste. Un vendedor no verá en el listado de productos recientes su producto, ni tampoco si filtra por categorías, pero sí lo verá en el listado de todos los productos. 
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- Como administrador: También se puede entrar con el rol de **administrador** (email: admin@errreshop.com y pssw: 123456789). En el cual podrá acceder a la sección de mi perfil y ver una lista con todas las transacciones y ordenarlas por precio ascendente, y, un listado con todos los usuarios y poder eliminarlos. 
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+- Como usuarios: Cada usuario podrá editar y eliminar sus propios productos según desee, pero no podrá eliminar porductos de otro usuario. Tiene una sección de **Mi perfil** dónde puede ver sus productos disponibles, los comprados y los vendidos. También, puede compartir el producto en diversas redes sociales cuando lo está visualizando, para así poder compartirlo.   
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+# DESCRIPCIÓN TÉCNICA
+La arquitectura de tres capas es un estilo de programación, cuyo objetivo primordial es la separación de la capa de presentación, la capa de negocio y la capa de datos.
 
-## Laravel Sponsors
+- En la capa de presentación (frontend), se encarga de la interfaz de usuario, la presentación de datos y la interacción con el usuario. Aquí se desarrollan las páginas web, la lógica de presentación y los componentes visuales. Se desarrollará con Blade, el motor de plantillas de laravel. Para los estilos, se usará SCSS que será compilado a CSS, y JS, para añadir diversas funcionalidades a la web. También se ha acabado utilizando JQuery para diversas funcionalidades.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+- En la capa de lógica de negocio (backend), es la capa que contiene la lógica de negocio de la aplicación. Aquí se procesan las solicitudes del usuario, se realizan las operaciones de validación, cálculos y manipulación de datos. Se usará laravel ya que es un framework que para realizar proyectos en poco tiempo está muy bien, tiene una muy buena documentación y gracias a Eloquent ORM tiene una ágil conexión a la base de datos.
 
-### Premium Partners
+- Y, en la capa de acceso a datos (base de datos), esta capa se ocupa de interactuar con la base de datos, almacenar y recuperar datos. Aquí se definen las tablas, se realizan las consultas y se gestionan las transacciones. Se usará una base de datos postgreSQL ya que tiene buen soporte para Eloquent, y debido a que ya tengo un entorno de pruebas hecho con postgreSQL.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+![Diagrama de componentes](/public/img/md/diagrama-de-componentes.png)
 
-## Contributing
+# METODOLOGÍA DE DESARROLLO
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Se ha seguido la metodología de desarrollo **Prototipado**. Se creó un producto mínimo viable y a partir de éste, se ha ido mejorando y mejorando el producto.
 
-## Code of Conduct
+# CLOCKIFY
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Este es un diagrama aproximado del timepo que se ha invertido en el proyecto. 
 
-## Security Vulnerabilities
+![Diagrama de tiempo](/public/img/md/Clockify_Time_Report_Summary_01_05_2023-11_06_2023.pdf)
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+# CONCLUSIONES Y POSIBLES MEJORAS
 
-## License
+Las principales mejoras que tenemos en mente son:
+- La creación de un chat, para que los usuarios puedan hablar entre ellos y negociar los precios, haría que la web fuese mucho más interactiva.
+- Crear diversos tipos de planes ('premium', 'standard', etc) para aquellos usuarios que más consuman la web y así fidelizarlos.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Para concluir, el proyecto ha sido una oportunidad para aprender y mejorar en laravel, ya no sólo en los fundamentos básicos, sino en poder desarrollar una api resolutiva y de cierta complejidad. Gracias a este proyecto, se ha obtenido experiencia en la construcción de una aplicación escalable y segura.
+

@@ -49,7 +49,7 @@
                         <button type="submit">Comprar producto</button>
                     </form>
 
-                    @if (Auth::user()->points > 0 && ($product->price - Auth::user()->points/100 >= 2))
+                    @if (Auth::user()->points > 0 && ($product->price - Auth::user()->points/100 > 5))
                         <div class="checkbox">
                             ¿Desea usar sus puntos?
                             <input type="checkbox" id="checkboxDiscount" class="checkbox__custom" onclick="updateCheckboxValue()">
