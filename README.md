@@ -39,6 +39,8 @@ Este es un diagrama aproximado del timepo que se ha invertido en el proyecto.
 
 ![Diagrama de tiempo](/public/img/md/Clockify_Time_Report_Summary_01_05_2023-11_06_2023.pdf)
 
+Como se esperaba, en la parte dónde más tiempo se ha invertido es en el frontend y en el backend.
+
 # CONCLUSIONES Y POSIBLES MEJORAS
 
 Las principales mejoras que tenemos en mente son:
