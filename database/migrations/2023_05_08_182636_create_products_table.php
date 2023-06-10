@@ -19,6 +19,7 @@ return new class extends Migration
             $table->float('price');
             $table->string('description')->default("");
             $table->integer('points');
+            $table->float('weight');
             $table->boolean('is_active')->default(true);
             $table->unsignedBigInteger('user_id')->default(0);
             $table->unsignedBigInteger('buyer_id')->default(0);

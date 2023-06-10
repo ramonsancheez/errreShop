@@ -42,6 +42,7 @@ class ProductController extends Controller
         $request->validate([
             'name' => 'required',
             'price' => 'required',
+            'weight' => 'required',
             'description' => 'required',
             'category_id' => 'required',
             'state_id' => 'required',
@@ -53,12 +54,23 @@ class ProductController extends Controller
         $product->name = $request->name;
         $product->price = $request->price;
         $product->state_id = $request->state_id;
-        $product->points = rand(1, 10);
         $product->description = $request->description;
+        $product->weight = $request->weight;
         $product->user_id = $user->id;
         $product->category_id = $request->category_id;
         $randImg = rand(1, 5);
         $product->image_url = "/img/categories/{$request->category_id}/{$randImg}.jpg";
+
+        if ($product->weight <= 2) {
+            $product->points = rand(1, 2);
+        } elseif ($product->weight <= 5) {
+            $product->points = rand(3, 5);
+        } elseif ($product->weight < 10) {
+            $product->points = rand(6, 8);
+        } else {
+            $product->points = rand(9, 10);
+        }
+
         $product->save();
 
         return to_route('product.index')->with('status', 'Tu producto ' . $product->name . ' ya está a la venta por un precio de ' . $product->price . '€');
@@ -79,12 +91,14 @@ class ProductController extends Controller
             'price' => 'required',
             'description' => 'required',
             'category_id' => 'required',
+            'weight' => 'required',
             'state_id' => 'required',
         ]);
 
         $product->name = $request->name;
         $product->price = $request->price;
         $product->state_id = $request->state_id;
+        $product->weight = $request->weight;
         $product->description = $request->description;
         $product->category_id = $request->category_id;
         $randImg = rand(1, 4);

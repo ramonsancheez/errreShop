@@ -20,6 +20,10 @@
                     <label for="description">Descripción:</label>
                     <textarea placeholder="Añade información necesaria" name="description" id="description" value="{{old('description')}}" maxlength="255"></textarea>
                 </div>
+                <div class="form__item">
+                    <label for="weight">Peso:</label>
+                    <input type="text" placeholder="Peso del artículo (áprox)" id="weight" name="weight" value="{{old('weight')}}">
+                </div>
                 <div class="form__select">
                     <div class="form__item">
                         <label for="category">Categoría:</label>
