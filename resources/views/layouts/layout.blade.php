@@ -6,18 +6,23 @@
     <script src="/js/app.js" defer></script>
     <link href="https://fonts.googleapis.com/css2?family=Space+Mono&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&display=swap" rel="stylesheet">
+
+    <meta property="og:title" content="ErrreShop">
+    <meta property="og:description" content="Tienda de compra/venta de artículos de segunda mano">
 </head>
 
 <body onscroll="addScroll()" id="home" class="home {{ session('status') ? 'modal-open' : '' }}">
     @if (session('status'))
-        <div class="alert__modal" id="alert-modal">
-            <img class="close__modal" src="{{ asset('img/svg/close.svg') }}" alt="Close modal" title="Cierra" onclick="closeAlertModal()" />
-            <div class="alert__modal-container">
-                {{ session('status') }}
-            </div>
+    <div class="alert__modal" id="alert-modal">
+        <img class="close__modal" src="{{ asset('img/svg/close.svg') }}" alt="Close modal" title="Cierra" onclick="closeAlertModal()" />
+        <div class="alert__modal-container">
+            {{ session('status') }}
         </div>
+    </div>
     @endif
     <header class="main-header">
         <a href="/products">

@@ -1,7 +1,10 @@
 @extends('layouts/layout')
     @section('main-content')
         <h2>Lista de Transacciones</h2>
-        <table class="table">
+
+        <input type="checkbox" id="ordenar-checkbox">
+        <label for="ordenar-checkbox">Precio ascendente</label>
+        <table id="transactions" class="table">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -21,7 +24,7 @@
                         <td>{{ $transaction->user_id}}</td>
                         <td>{{ $transaction->profit_seller}}</td>
                         <td>{{ $transaction->profit_company}}</td>
-                        <td>{{ $transaction->total_price}}</td>
+                        <td class="precio-columna">{{ $transaction->total_price}}</td>
 
                         <td>{{ $transaction->created_at->format('Y-m-d H:i:s') }}</td>
                     </tr>
@@ -64,4 +67,60 @@
                 @endforeach
             </tbody>
         </table>
+
+        <script>
+            $(document).ready(function() {
+                var ordenAscendente = true;
+        
+                $('#ordenar-checkbox').click(function() {
+                    ordenAscendente = !ordenAscendente;
+        
+                    if ($(this).is(':checked')) {
+                        ordenarTabla(ordenAscendente);
+                    } else {
+                        restaurarOrdenOriginal();
+                    }
+                });
+        
+                function ordenarTabla(ascendente) {
+                    var rows = $('#transactions tbody tr').get();
+        
+                    rows.sort(function(rowA, rowB) {
+                        var priceA = parseFloat($(rowA).find('.precio-columna').text());
+                        var priceB = parseFloat($(rowB).find('.precio-columna').text());
+        
+                        if (ascendente) {
+                            return priceA - priceB;
+                        } else {
+                            return priceB - priceA;
+                        }
+                    });
+        
+                    $('#transactions tbody').empty();
+        
+                    $.each(rows, function(index, row) {
+                        $('#transactions tbody').append(row);
+                    });
+                }
+        
+                function restaurarOrdenOriginal() {
+                    var rows = $('#transactions tbody tr').get();
+        
+                    rows.sort(function(rowA, rowB) {
+                        var indexA = $(rowA).index();
+                        var indexB = $(rowB).index();
+                        return indexA - indexB;
+                    });
+        
+                    $('#transactions tbody').empty();
+        
+                    $.each(rows, function(index, row) {
+                        $('#transactions tbody').append(row);
+                    });
+                }
+            });
+        </script>
+        
+        
+        
     @endsection
