@@ -38,6 +38,17 @@ class ProductFactory extends Factory
             $randomNumber = random_int(1, 5);
             $imageUrl = "/img/categories/{$categoryId}/{$randomNumber}.jpg";
             $product->image_url = $imageUrl;
+
+            if ($product->weight <= 2) {
+                $product->points = rand(1, 2);
+            } elseif ($product->weight <= 5) {
+                $product->points = rand(3, 5);
+            } elseif ($product->weight < 10) {
+                $product->points = rand(6, 8);
+            } else {
+                $product->points = rand(9, 10);
+            }
+            
             $product->save();
         });
     }

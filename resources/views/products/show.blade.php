@@ -20,6 +20,8 @@
                 <hr>
                 
                 <div class="product__info__description">{{$product->description}}</div>
+                <br>
+                <div class="product__info">Peso: {{$product->weight}} kg</div>
                 <div class="product__info__toDo">
                     @if($user->role == "admin")
                         <div class="product__info__delete">
