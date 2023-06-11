@@ -32,9 +32,9 @@
                             </form>
                         </div>
                     @elseif ($product->user_id != Auth::user()->id && $product->buyer_id == Auth::user()->id)
-                        <div class="product__info__sold">Comprado a: {{ $product->user_id}}</div>
+                        <div class="product__info__sold">Comprado a: {{ $product->owner->name}}</div>
                     @elseif ($product->buyer_id != 0 && $product->user_id == Auth::user()->id)
-                        <div class="product__info__sold">Vendido a: {{ $product->buyer_id }}</div>
+                        <div class="product__info__sold">Vendido a: {{ $product->buyer->name }}</div>
                     @elseif ($product->user_id == Auth::user()->id && $product->buyer_id == 0)
                         <div class="product__info__edit"><a href="{{ route('product.edit', $product) }}">Editar producto</a></div>
                         <div class="product__info__delete">

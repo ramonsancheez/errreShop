@@ -31,4 +31,15 @@ class Product extends Model
         return $this->hasOne(Transaction::class);
     }
 
+    public function buyer()
+    {
+        return $this->belongsTo(User::class, 'buyer_id');
+    }
+
+    public function owner()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+
 }
