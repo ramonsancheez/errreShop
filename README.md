@@ -10,13 +10,13 @@ El presente anteproyecto abordará tanto los aspectos técnicos como los funcion
 En conclusión, "errre" se posiciona como una alternativa innovadora en el mercado de compra/venta de artículos de segunda mano, brindando una plataforma única que premia la sostenibilidad y la participación activa de los usuarios. A través de la implementación de un sistema de puntos y descuentos, buscamos promover un estilo de vida más consciente y contribuir al desarrollo de una sociedad más sostenible y responsable con el medio ambiente.
 
 # LÓGICA DE LA EMPRESA
-- Como comprador: Cada vez que se obtenga un producto, se le asignarán los puntos que valga ese producto. Una vez tenga más de 0 puntos, éstos ya pueden ser utilizados para obtener descuentos en todos los productos de la web. Se obtendrán puntos siempre que no se utilicen puntos para la compra de un artículo, en caso de que se utilizen, el contador volverá a 0. Para evitar precios negativos, ponemos un mínimo de 5€ (si la resta del precio - el descuento del cliente es inferior a 5€, no se podrán utilizar los puntos).
+- Como comprador: Cada vez que se obtenga un producto, se le asignarán los puntos que valga ese producto. Una vez tenga más de 0 puntos, éstos ya pueden ser utilizados para obtener descuentos en todos los productos de la web. Se obtendrán puntos siempre que no se utilicen para la compra de un nuevo artículo, en caso de que se utilizen, el contador volverá a 0. Para evitar precios negativos, ponemos un mínimo de 5€ (si la resta del precio - el descuento del cliente es inferior a 5€, no se podrán utilizar los puntos).
 
 - Como vendedor: Los puntos se asigarán según el peso del producto, para incentivar a la reutilización de los productos más dañinos para el medio ambiente. Si el peso del producto se encuentra entre los 0-2kg, se le asignarán de 1 a 2 puntos. Si el peso está entre los 3-5kg, se le asignarán de 3-5 puntos. Si el peso es inferior a 10 kg se le asignarán a su producto entre 6-8 puntos, y, si el peso supera los 10kg, se le asignarán de 9-10 puntos. Cada vez que venda un producto se le asignarán los atribuidos a éste. Un vendedor no verá en el listado de productos recientes su producto, ni tampoco si filtra por categorías, pero sí lo verá en el listado de todos los productos. 
 
-- Como administrador: También se puede entrar con el rol de **administrador** (email: admin@errreshop.com y pssw: 123456789). En el cual podrá acceder a la sección de mi perfil y ver una lista con todas las transacciones y ordenarlas por precio ascendente, y, un listado con todos los usuarios y poder eliminarlos. 
+- Como administrador: También se puede entrar con el rol de **administrador** (email: admin@errreshop.com y pssw: 123456789). En el cual podrá acceder a la sección de mi perfil y ver un listado con todas las transacciones y ordenarlas por precio descendente, y, un listado con todos los usuarios y poder eliminarlos. 
 
-- Como usuarios: Cada usuario podrá editar y eliminar sus propios productos según desee, pero no podrá eliminar porductos de otro usuario. Tiene una sección de **Mi perfil** dónde puede ver sus productos disponibles, los comprados y los vendidos. También, puede compartir el producto en diversas redes sociales cuando lo está visualizando, para así poder compartirlo.   
+- Como usuarios (general): Cada usuario podrá editar y eliminar sus propios productos según desee, pero no podrá eliminar porductos de otro usuario. Tiene una sección de **Mi perfil** (donde pone su nombre) dónde puede ver sus productos disponibles, los comprados y los vendidos, dónde verá el nombre de la persona que ha vendido/comprado el porducto. También, puede compartir el producto en diversas redes sociales cuando lo está visualizando.   
 
 # DESCRIPCIÓN TÉCNICA
 La arquitectura de tres capas es un estilo de programación, cuyo objetivo primordial es la separación de la capa de presentación, la capa de negocio y la capa de datos.
@@ -31,7 +31,7 @@ La arquitectura de tres capas es un estilo de programación, cuyo objetivo primo
 
 # METODOLOGÍA DE DESARROLLO
 
-Se ha seguido la metodología de desarrollo **Prototipado**. Se creó un producto mínimo viable y a partir de éste, se ha ido mejorando y mejorando el producto.
+ El desarrollo del proyecto ha seguido la metodología de desarrollo **Prototipado**, comenzando con un producto mínimo viable y mejorándolo continuamente en base a los comentarios y necesidades de los usuarios (compañeros de clase, del trabajo, familiares, etc). Este enfoque ha permitido construir un producto sólido y adaptado a las expectativas del mercado.
 
 # CLOCKIFY
 
@@ -39,12 +39,13 @@ Este es un diagrama aproximado del timepo que se ha invertido en el proyecto.
 
 ![Diagrama de tiempo](/public/img/md/Clockify_Time_Report_Summary_01_05_2023-11_06_2023.pdf)
 
-Como se esperaba, en la parte dónde más tiempo se ha invertido es en el frontend y en el backend.
+El tiempo invertido en el desarrollo del proyecto ha estado principalmente en el front y el back, debido a la importancia de estas áreas para lograr un producto completo y funcional. Sin embargo, también hay que tener en cuenta que se han dedicado esfuerzos en otras tareas relacionadas con la planificación, documentación y teesting para garantizar la calidad y el éxito del proyecto.
 
 # CONCLUSIONES Y POSIBLES MEJORAS
 
 Las principales mejoras que tenemos en mente son:
 - La creación de un chat, para que los usuarios puedan hablar entre ellos y negociar los precios, haría que la web fuese mucho más interactiva.
+
 - Crear diversos tipos de planes ('premium', 'standard', etc) para aquellos usuarios que más consuman la web y así fidelizarlos.
 
 Para concluir, el proyecto ha sido una oportunidad para aprender y mejorar en laravel, ya no sólo en los fundamentos básicos, sino en poder desarrollar una api resolutiva y de cierta complejidad. Gracias a este proyecto, se ha obtenido experiencia en la construcción de una aplicación escalable y segura.
