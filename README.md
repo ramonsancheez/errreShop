@@ -1,3 +1,7 @@
+# DESPLEGADA
+
+errreshop.randion.es
+
 # INTRODUCCIÓN
 En el contexto de una sociedad cada vez más consciente de la importancia de la sostenibilidad y la economía circular, surge la necesidad de desarrollar soluciones innovadoras que promuevan la reducción, el reciclaje y la reutilización de productos.La creación de "errre", tiene como objetivo principal una página web de compra/venta de artículos de segunda mano que busca revolucionar la forma en que las personas adquieren y desechan objetos.
 
@@ -40,6 +44,10 @@ Este es un diagrama aproximado del timepo que se ha invertido en el proyecto.
 ![Diagrama de tiempo](/public/img/md/Clockify_Time_Report_Summary_01_05_2023-11_06_2023.pdf)
 
 El tiempo invertido en el desarrollo del proyecto ha estado principalmente en el front y el back, debido a la importancia de estas áreas para lograr un producto completo y funcional. Sin embargo, también hay que tener en cuenta que se han dedicado esfuerzos en otras tareas relacionadas con la planificación, documentación y teesting para garantizar la calidad y el éxito del proyecto.
+
+# TESTS
+
+![Casos test](/public/img/test.png)
 
 # CONCLUSIONES Y POSIBLES MEJORAS
 
