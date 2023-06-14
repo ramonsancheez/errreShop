@@ -75,7 +75,7 @@ Fases:
 
 Este es un diagrama aproximado del timepo que se ha invertido en el proyecto. 
 
-![Diagrama de tiempo](/public/img/md/Clockify_Time_Report_Summary_01_05_2023-11_06_2023.pdf)
+![Diagrama de tiempo](/public/img/md/clockify.pdf)
 
 El tiempo invertido en el desarrollo del proyecto ha estado principalmente en el front y el back, debido a la importancia de estas áreas para lograr un producto completo y funcional. Sin embargo, también hay que tener en cuenta que se han dedicado esfuerzos en otras tareas relacionadas con la planificación, documentación y teesting para garantizar la calidad y el éxito del proyecto.
 
