@@ -13,6 +13,18 @@ El presente anteproyecto abordará tanto los aspectos técnicos como los funcion
 
 En conclusión, "errre" se posiciona como una alternativa innovadora en el mercado de compra/venta de artículos de segunda mano, brindando una plataforma única que premia la sostenibilidad y la participación activa de los usuarios. A través de la implementación de un sistema de puntos y descuentos, buscamos promover un estilo de vida más consciente y contribuir al desarrollo de una sociedad más sostenible y responsable con el medio ambiente.
 
+# OBJETIVOS PARA EL COMPRADOR
+
+OBJETIVOS PARA EL COMPRADOR
+El proyecto "errre" tiene como objetivo principal desarrollar una página web de compra/venta de artículos de segunda mano con un sistema de puntos y descuentos, con el fin de promover la sostenibilidad y la economía circular. A continuación, se detallan los objetivos específicos que se persiguen:
+
+1. Implementar un sistema de puntos y descuentos: Diseñar e implementar un sistema de puntos que recompense a los usuarios por la compra y venta de artículos en la plataforma. Establecer un mecanismo para que los usuarios puedan canjear sus puntos acumulados por descuentos en futuras transacciones.
+2. Crear una interfaz intuitiva y atractiva: Desarrollar una interfaz de usuario que sea fácil de navegar y que proporcione una experiencia agradable a los usuarios. Garantizar una presentación clara de los productos, categorías y funcionalidades, facilitando así la búsqueda y compra de artículos de segunda mano.
+3. Fomentar la sostenibilidad y la economía circular: Promover la adquisición de artículos de segunda mano como alternativa sostenible a la compra de productos nuevos. Educar y concienciar a los usuarios sobre la importancia de reducir, reciclar y reutilizar, proporcionando información relevante y consejos prácticos en la plataforma.
+4. Privacidad y seguridad: Cada usuario deberá tener un nombre de usuario y una contraseña que servirá para identificarse.
+5. Identificar posibles mejoras y expansiones futuras: Evaluar continuamente la plataforma para identificar áreas de mejora y posibles expansiones. Estar atentos a las necesidades y sugerencias de los usuarios, y considerar la incorporación de nuevas funcionalidades.
+
+
 # LÓGICA DE LA EMPRESA
 - Como comprador: Cada vez que se obtenga un producto, se le asignarán los puntos que valga ese producto. Una vez tenga más de 0 puntos, éstos ya pueden ser utilizados para obtener descuentos en todos los productos de la web. Se obtendrán puntos siempre que no se utilicen para la compra de un nuevo artículo, en caso de que se utilizen, el contador volverá a 0. Para evitar precios negativos, ponemos un mínimo de 5€ (si la resta del precio - el descuento del cliente es inferior a 5€, no se podrán utilizar los puntos).
 
@@ -41,6 +53,11 @@ La arquitectura de tres capas es un estilo de programación, cuyo objetivo primo
 
 ![Diagrama de componentes](/public/img/md/diagrama-de-componentes.png)
 
+
+# PROCESO DE DESARROLLO
+
+
+
 # METODOLOGÍA DE DESARROLLO
 
  El desarrollo del proyecto ha seguido la metodología de desarrollo **Prototipado**, comenzando con un producto mínimo viable y mejorándolo continuamente en base a los comentarios y necesidades de los usuarios (compañeros de clase, del trabajo, familiares, etc). Este enfoque ha permitido construir un producto sólido y adaptado a las expectativas del mercado.
@@ -56,6 +73,30 @@ El tiempo invertido en el desarrollo del proyecto ha estado principalmente en el
 # TESTS
 
 ![Casos test](/public/img/test.png)
+
+# MEDIOS MATERIALES NECESARIOS
+
+Los medios materiales utilizados para el proyecto son:
+
+**HARDWARE**
+
+Servidor: CPU 4 vcores, RAM 8gb, SSD 240gb
+Conectividad de red: Conexión a internet estable
+
+**SOFTWARE**
+
+Sistema operativo: Windows 11 Version 22H2
+Servidor web: Apache2 2.4.54
+Base de datos: PostgreSQL 19.3
+Versión de laravel: Laravel 10.9
+Versión de sass: Sass 
+Entorno de desarrollo: VS Code
+Versión de VS Code: VS Code 1.78.2
+
+**LICENCIAS**
+
+https://opensource.org/license/mit/
+
 
 # CONCLUSIONES Y POSIBLES MEJORAS
 
