@@ -55,12 +55,21 @@ La arquitectura de tres capas es un estilo de programación, cuyo objetivo primo
 
 
 # PROCESO DE DESARROLLO
+He elegido el proceso Unificado de Desarrollo de Software ya que con sus diversas fases se adapta muy bien a proyectos de mediana envergadura. Al no tener muy claras diversas cosas del proyecto, este método de desarrollo me permite poder ir avanzando y resolviendo las dudas conforme van saliendo, y gracias a sus varias fases, me permiten una mejor estructura para conseguir sacar el proyecto adelante.
 
+Fases:
+
+1. Inicio: En esta fase se identifican los objetivos del proyecto, se analizan los riesgos y se define una visión general del sistema a desarrollar.
+2. Elaboración: En esta fase se realiza un análisis detallado de los requisitos, se definen las características clave del sistema y se elabora un plan detallado para el desarrollo.
+3. Construcción: En esta fase se desarrolla el sistema de acuerdo con el plan establecido, se realizan pruebas unitarias y se integran los componentes desarrollados.
+4. Transición: En esta fase se realiza la implementación del sistema en el entorno de producción, se llevan a cabo pruebas de aceptación y se proporciona soporte al usuario final.
 
 
 # METODOLOGÍA DE DESARROLLO
 
  El desarrollo del proyecto ha seguido la metodología de desarrollo **Prototipado**, comenzando con un producto mínimo viable y mejorándolo continuamente en base a los comentarios y necesidades de los usuarios (compañeros de clase, del trabajo, familiares, etc). Este enfoque ha permitido construir un producto sólido y adaptado a las expectativas del mercado.
+ 
+ Al estar trabajando yo solo en el proyecto, trabajar directamente en **master** simplifica el flujo de trabajo y evita el tener que administrar múltiples ramas. Además de la agilidad que proporciona el no tener que estra cambiando de una rama a otra para decisiones que tengan relación con el proyecto. 
 
 # CLOCKIFY
 
@@ -70,6 +79,7 @@ Este es un diagrama aproximado del timepo que se ha invertido en el proyecto.
 
 El tiempo invertido en el desarrollo del proyecto ha estado principalmente en el front y el back, debido a la importancia de estas áreas para lograr un producto completo y funcional. Sin embargo, también hay que tener en cuenta que se han dedicado esfuerzos en otras tareas relacionadas con la planificación, documentación y teesting para garantizar la calidad y el éxito del proyecto.
 
+Como presupuesto, he 
 # TESTS
 
 ![Casos test](/public/img/test.png)
