@@ -69,6 +69,8 @@ Fases:
 
  El desarrollo del proyecto ha seguido la metodología de desarrollo **Prototipado**, comenzando con un producto mínimo viable y mejorándolo continuamente en base a los comentarios y necesidades de los usuarios (compañeros de clase, del trabajo, familiares, etc). Este enfoque ha permitido construir un producto sólido y adaptado a las expectativas del mercado.
  
+ # GITFLOW
+ 
  Al estar trabajando yo solo en el proyecto, trabajar directamente en **master** simplifica el flujo de trabajo y evita el tener que administrar múltiples ramas. Además de la agilidad que proporciona el no tener que estra cambiando de una rama a otra para decisiones que tengan relación con el proyecto. 
 
 # CLOCKIFY
